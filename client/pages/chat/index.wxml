@@ -1,0 +1,29 @@
+<!--pages/chat/index.wxml-->
+<view class="container">
+    <view wx:if="{{chatList.length > 0}}">
+        <view class="chat_list"wx:for="{{chatList}}" wx:key="user">
+            <view class="chat_face">
+                <image src="{{item.avatar}}" />
+            </view>
+            <view class="chat_words">
+                <view class="chat_meta">
+                    <text class="chat_user">{{item.name}}</text>
+                    <text class="chat_date">{{item.createTime}}</text>
+                </view>
+                <view>{{item.content}}</view>
+            </view>
+        </view>
+    </view>
+    <view wx:else>
+        <view class="befirst">
+            <image src="/images/lovemail.gif"/>
+        </view>
+    </view>
+    <view class="send_msg">
+        <form bindreset="foo">
+            <input placeholder="在这里输入您要说的话" class="send_ipt" bindinput="bindKeyInput"/>
+            <button type="primary" form-type="reset" class="send_btn" wx:if="{{userInfo}}">发布</button>
+            <button type="primary" form-type="reset"  class="send_btn" wx:else open-type="getUserInfo"  bindgetuserinfo="onTapLogin">发布</button>
+        </form>   
+    </view>
+</view>
